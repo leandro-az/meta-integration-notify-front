@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#sect1 {  
+  height: 650 px;  
+  color: #fff;
+  background-image: url("./assets/images/background.jpeg");  
+  background-size: 100% ;  
+  background-size: cover;  
+  height: max-content;
+
+}  
