@@ -1,28 +1,42 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
-import { AppRoutingModule } from './modules/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
 } from '@abacritt/angularx-social-login';
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-} from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './modules/app-material.module';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { MaterialModule } from './shared/material.module';
+import { SidenavComponent } from '../app/sidenav/sidenav.component';
+import { LoginComponent } from './login/login.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MainContentComponent } from './main-content/main-content.component';
+import { DetailviewComponent } from './detailview/detailview.component';
+import { NewEmployeeDialogComponent } from './new-employee-dialog/new-employee-dialog.component';
+import { EditEmployeeDialogComponent } from './edit-employee-dialog/edit-employee-dialog.component';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    SidenavComponent,
+    LoginComponent,
+    // ToolbarComponent,
+    // NewEmployeeDialogComponent,
+    // MainContentComponent,
+    // EditEmployeeDialogComponent,
+    // DetailviewComponent,
+    // NotesComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
     BrowserAnimationsModule,
-    AppMaterialModule,
+    MaterialModule,
   ],
   providers: [
     {
@@ -33,10 +47,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.google_client_id),
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId'),
           },
         ],
         onError: (err) => {

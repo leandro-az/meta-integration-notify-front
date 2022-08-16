@@ -19,13 +19,13 @@ export class AppComponent implements OnInit {
     private authService: SocialAuthService
   ) {}
 
-  loginWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
+  // loginWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
 
-  signOut(): void {
-    this.authService.signOut();
-  }
+  // signOut(): void {
+  //   this.authService.signOut();
+  // }
   ngOnInit() {
     // this.loginForm = this.formBuilder.group({
     //   email: ['', Validators.required],
