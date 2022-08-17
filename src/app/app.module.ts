@@ -10,26 +10,16 @@ import {
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
-import { SidenavComponent } from '../app/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MainContentComponent } from './main-content/main-content.component';
-import { DetailviewComponent } from './detailview/detailview.component';
-import { NewEmployeeDialogComponent } from './new-employee-dialog/new-employee-dialog.component';
-import { EditEmployeeDialogComponent } from './edit-employee-dialog/edit-employee-dialog.component';
-import { NotesComponent } from './notes/notes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
     LoginComponent,
-    // ToolbarComponent,
-    // NewEmployeeDialogComponent,
-    // MainContentComponent,
-    // EditEmployeeDialogComponent,
-    // DetailviewComponent,
-    // NotesComponent,
+    DashboardComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,

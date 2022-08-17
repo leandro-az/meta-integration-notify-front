@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '../shared/material.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, MaterialModule],
+  imports: [BrowserModule, CommonModule, MaterialModule],
 })
-export class ToolbarModule {}
+export class DashboardModule {}
