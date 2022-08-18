@@ -1,26 +1,46 @@
 <mat-sidenav-container class="app-sidenav-container" [dir]="'ltr'">
   <mat-sidenav #sidenav class="app-sidenav mat-elevation-z2" [opened]="!isScreenSmall()"
     [mode]="isScreenSmall() ? 'over' : 'side'">
-    <mat-toolbar color="primary">Menus</mat-toolbar>
+    <mat-toolbar class="toolbar">
+
+      <div class="sidebar-profile">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" [src]="photoUrl" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong>{{userName}}</strong>
+          </span>
+          <span class="user-role">Administrator</span>
+        </div>
+      </div>
+
+    </mat-toolbar>
     <mat-nav-list>
       <mat-list-item>
-        <mat-icon>home</mat-icon> Nome
+        <mat-icon>home</mat-icon> <span class="user-name">
+          <strong>Configurações</strong>
+        </span>
         <!-- <a matLine [routerLink]="['/employeemanager']">
           <mat-icon>home</mat-icon> Home
         </a> -->
       </mat-list-item>
       <mat-list-item>
-        <mat-icon>attach_file</mat-icon> Funcionarios
+        <mat-icon>attach_file</mat-icon> <span class="user-name">
+          <strong>Funcionários</strong>
+        </span>
       </mat-list-item>
       <mat-list-item>
-        <mat-icon>add_comment</mat-icon> Leads
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon (click)="logOut()">apps</mat-icon> Logout
+        <mat-icon>add_comment</mat-icon> <span class="user-name">
+          <strong>Leads</strong>
+        </span>
       </mat-list-item>
     </mat-nav-list>
     <div class="copyright-container">
-      <a href="https://myview.rahulnivi.net" target="_blank"><span>Copyright &copy; Rahul Sahay </span></a>
+
+      <button (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
       <div fxFlex></div>
     </div>
   </mat-sidenav>

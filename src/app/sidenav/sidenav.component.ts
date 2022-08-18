@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
 import { Router } from '@angular/router';
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
+import { SessionService } from '../services/session.service';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -21,12 +22,14 @@ export class SidenavComponent implements OnInit {
   dir: string = 'ltr';
   user: SocialUser | null = new SocialUser();
   isLoggedin?: boolean = false;
-  socialUser!: SocialUser;
+  socialUser?: SocialUser | null;
+  userName: string = '';
+  photoUrl: string = '';
   constructor(
-    zone: NgZone,
     // private employeeService: EmployeeService,
     private router: Router,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private sessionService: SessionService
   ) {
     // this.mediaMatcher.addListener((mql) =>
     //   zone.run(
@@ -39,11 +42,12 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedin = user != null;
-      console.log(this.socialUser);
-    });
+    this.socialUser = this.sessionService.getUser();
+    if (this.socialUser) {
+      this.isLoggedin = this.socialUser ? true : false;
+      this.userName = this.socialUser.firstName;
+      this.photoUrl = this.socialUser.photoUrl;
+    }
   }
 
   isScreenSmall(): boolean {
@@ -55,6 +59,15 @@ export class SidenavComponent implements OnInit {
   }
 
   logOut(): void {
-    this.authService.signOut().then(() => this.router.navigate(['']));
+    this.authService
+      .signOut()
+      .then(() => {
+        this.sessionService.removeUser();
+        this.router.navigate(['']);
+      })
+      .catch(() => {
+        this.sessionService.removeUser();
+        this.router.navigate(['']);
+      });
   }
 }
