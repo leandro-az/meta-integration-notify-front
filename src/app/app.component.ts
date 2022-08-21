@@ -5,6 +5,8 @@ import {
   GoogleLoginProvider,
   SocialUser,
 } from '@abacritt/angularx-social-login';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,10 +16,21 @@ export class AppComponent implements OnInit {
   loginForm!: FormGroup;
   isLoggedin?: boolean = false;
   socialUser!: SocialUser;
+  title: any;
+  // constructor(
+  //   // private formBuilder: FormBuilder,
+  //   private authService: SocialAuthService
+  // ) {}
+
   constructor(
-    // private formBuilder: FormBuilder,
-    private authService: SocialAuthService
-  ) {}
+    private authService: SocialAuthService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer
+  ) {
+    iconRegistry.addSvgIconSet(
+      sanitizer.bypassSecurityTrustResourceUrl('assets/avatars.svg')
+    );
+  }
 
   // loginWithGoogle(): void {
   //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);

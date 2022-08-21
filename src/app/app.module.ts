@@ -11,15 +11,23 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { LeadComponent } from './lead/lead.component';
+import { LeadListComponent } from './lead-list/lead-list.component';
+import { EditLeadDialogComponent } from './edit-lead-dialog/edit-lead-dialog.component';
+import { LeadDashboardComponent } from './lead-dashboard/lead-dashboard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
     SidenavComponent,
+    LeadListComponent,
+    LeadDashboardComponent,
+    EditLeadDialogComponent,
+    LeadComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +35,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     SocialLoginModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     {
@@ -46,5 +57,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [EditLeadDialogComponent],
 })
 export class AppModule {}

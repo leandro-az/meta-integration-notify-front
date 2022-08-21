@@ -7,4 +7,4 @@ import { MaterialModule } from '../shared/material.module';
   declarations: [],
   imports: [BrowserModule, CommonModule, MaterialModule],
 })
-export class DashboardModule {}
+export class LeadDashboardModule {}

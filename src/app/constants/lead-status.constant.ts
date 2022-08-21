@@ -1,0 +1,6 @@
+export const LeadStatus = {
+  NOVO: 'NOVO',
+  CANCELADO: 'CANCELADO',
+  FECHADO: 'FECHADO',
+  NEGOCIANDO: 'NEGOCIANDO',
+};

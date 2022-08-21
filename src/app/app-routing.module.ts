@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../app/login/login.component';
-import { DashboardComponent } from '../app/dashboard/dashboard.component';
+import { LeadDashboardComponent } from '../app/lead-dashboard/lead-dashboard.component';
+import { LeadComponent } from './lead/lead.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/leads', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'leads',
+    component: LeadDashboardComponent,
+    children: [{ path: ':leadId', component: LeadComponent }],
+  },
   { path: '**', redirectTo: '' },
 ];
 

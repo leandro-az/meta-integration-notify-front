@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-// import { EmployeeService } from '../services/employee.service';
 import { Observable } from 'rxjs';
-import { Employee } from '../models/employee';
+import { Lead } from '../models/lead';
 import { Router } from '@angular/router';
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { SessionService } from '../services/session.service';
@@ -17,7 +16,7 @@ export class SidenavComponent implements OnInit {
   private mediaMatcher: MediaQueryList = matchMedia(
     `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`
   );
-  employees: Observable<Employee[]> | undefined;
+  leads: Observable<Lead[]> | undefined;
   isIndigoTheme: boolean = false;
   dir: string = 'ltr';
   user: SocialUser | null = new SocialUser();
@@ -26,7 +25,7 @@ export class SidenavComponent implements OnInit {
   userName: string = '';
   photoUrl: string = '';
   constructor(
-    // private employeeService: EmployeeService,
+    // private leadService: LeadService,
     private router: Router,
     private authService: SocialAuthService,
     private sessionService: SessionService
@@ -63,11 +62,11 @@ export class SidenavComponent implements OnInit {
       .signOut()
       .then(() => {
         this.sessionService.removeUser();
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       })
       .catch(() => {
         this.sessionService.removeUser();
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       });
   }
 }

@@ -4,11 +4,11 @@ import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { SessionService } from '../services/session.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'app-lead-dashboard',
+  templateUrl: './lead-dashboard.component.html',
+  styleUrls: ['./lead-dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class LeadDashboardComponent implements OnInit {
   user: SocialUser | null = new SocialUser();
   isLoggedin?: boolean = false;
   socialUser?: SocialUser | null;
