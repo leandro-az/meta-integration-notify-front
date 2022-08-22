@@ -18,7 +18,7 @@
     </mat-toolbar>
     <mat-nav-list>
       <mat-list-item>
-        <a matLine [routerLink]="['/leads']">
+        <a matLine [routerLink]="['/main/leads']">
           <mat-icon>home</mat-icon> Home
         </a>
       </mat-list-item>
@@ -39,20 +39,16 @@
       </mat-list-item>
     </mat-nav-list>
     <div class="copyright-container">
-
-      <button (click)="logOut()">
-        <mat-icon>exit_to_app</mat-icon>
-      </button>
-      <div fxFlex></div>
+      <div fxFlex>
+        <button (click)="logOut()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </div>
     </div>
   </mat-sidenav>
-
-  <div class="app-sidenav-content">
-    <div class="wrapper">
-
-      <!-- <router-outlet></router-outlet> -->
-
-      <app-lead-list></app-lead-list>
-    </div>
-  </div>
+  <mat-sidenav-content class="app-sidenav-content">
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
 </mat-sidenav-container>

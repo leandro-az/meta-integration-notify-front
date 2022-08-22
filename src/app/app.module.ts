@@ -12,12 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { LeadComponent } from './lead/lead.component';
 import { LeadListComponent } from './lead-list/lead-list.component';
 import { EditLeadDialogComponent } from './edit-lead-dialog/edit-lead-dialog.component';
 import { LeadDashboardComponent } from './lead-dashboard/lead-dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     LeadListComponent,
     LeadDashboardComponent,
     EditLeadDialogComponent,
-    LeadComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

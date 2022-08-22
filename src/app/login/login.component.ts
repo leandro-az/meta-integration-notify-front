@@ -30,14 +30,14 @@ export class LoginComponent implements OnInit {
     this.isLoggedin = this.socialUser ? true : false;
     console.log(this.socialUser);
     if (this.isLoggedin) {
-      this.router.navigate(['/leads']);
+      this.router.navigate(['/main/leads']);
     } else {
       this.authService.authState.subscribe((user) => {
         this.socialUser = user;
         this.isLoggedin = user != null;
         if (this.isLoggedin) {
           this.sessionService.putUser(user);
-          this.router.navigate(['/leads']);
+          this.router.navigate(['/main/leads']);
         }
       });
     }

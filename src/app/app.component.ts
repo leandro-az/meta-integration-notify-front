@@ -7,6 +7,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   // ) {}
 
   constructor(
+    private router: Router,
     private authService: SocialAuthService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer
@@ -49,6 +51,11 @@ export class AppComponent implements OnInit {
       this.isLoggedin = user != null;
       console.log(this.socialUser);
     });
+    // if (this.isLoggedin) {
+    //   this.router.navigate(['/leads']);
+    // } else {
+    //   this.router.navigate(['/login']);
+    // }
   }
   logOut(): void {
     this.authService.signOut();
