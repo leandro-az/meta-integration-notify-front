@@ -43,13 +43,35 @@ export class LeadListComponent implements OnInit {
     this.router.navigate(['leads', lead.leadId]);
   }
 
-  openLeadDialog(index: number, { leadId, email, name, age, obs }: Lead) {
+  openLeadDialog(
+    index: number,
+    {
+      leadId,
+      email,
+      name,
+      age,
+      obs,
+      valor_total_plano,
+      status,
+      createdAt,
+    }: Lead
+  ) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '450px';
-    dialogConfig.data = { leadId, email, name, age, obs, index };
+    dialogConfig.data = {
+      leadId,
+      email,
+      name,
+      age,
+      obs,
+      valor_total_plano,
+      status,
+      createdAt,
+      index,
+    };
     const dialogRef = this.dialog.open(EditLeadDialogComponent, dialogConfig);
     dialogRef
       .afterClosed()

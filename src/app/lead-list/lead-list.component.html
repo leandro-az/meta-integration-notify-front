@@ -1,16 +1,12 @@
 <div>
-    <h3>Leads</h3>
+    <h3>LEADS</h3>
     <mat-card *ngFor="let element of (leadsData | async); let i = index" class="kid">
         <mat-card-header>
             <div mat-card-avatar>
                 <mat-icon [svgIcon]="getSvgIcon()"></mat-icon>
             </div>
-            <!-- <mat-card-title>
-
-                <mat-icon mat-card-avatar></mat-icon> {{ element.name }}
-
-            </mat-card-title> -->
-            <mat-card-subtitle>{{ element.age }}</mat-card-subtitle>
+            <mat-card-title>{{ element.name }}</mat-card-title>
+            <!-- <mat-card-subtitle>{{ element.age }}</mat-card-subtitle> -->
             <div fxFlex></div>
             <button mat-button (click)="__cardClick(element)">
                 <mat-icon>beenhere</mat-icon>
