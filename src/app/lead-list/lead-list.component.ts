@@ -31,7 +31,7 @@ export class LeadListComponent implements OnInit {
 
   ngOnInit() {
     this.leadsData = this.leadService.leadsSet;
-    this.leadService.getJSON();
+    this.leadService.getleadsByUserId('');
     this.leadsData.subscribe((data) => {
       console.log('OLHA os dadoss2');
       console.log(data);

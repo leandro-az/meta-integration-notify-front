@@ -18,6 +18,7 @@ import { LeadDashboardComponent } from './lead-dashboard/lead-dashboard.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MainComponent } from './main/main.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    GraphQLModule,
   ],
   providers: [
     {
