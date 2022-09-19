@@ -59,7 +59,7 @@ export class EditLeadDialogComponent implements OnInit {
 
   onEdit() {
     this.leadService
-      .update(this.indexvalue.nativeElement.value, this.form.value)
+     .updateLead(this.form.value)
       .then((lead) => {
         this.dialogRef.close(lead);
       });

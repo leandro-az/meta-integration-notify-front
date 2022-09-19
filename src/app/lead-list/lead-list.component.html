@@ -1,6 +1,8 @@
 <div>
     <h3>LEADS</h3>
+    <button mat-raised-button color="gray">NOVO</button>
     <mat-card *ngFor="let element of (leadsData | async); let i = index" class="kid">
+        
         <mat-card-header>
             <div mat-card-avatar>
                 <mat-icon [svgIcon]="getSvgIcon()"></mat-icon>

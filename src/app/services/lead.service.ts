@@ -3,7 +3,14 @@ import { Lead } from '../models/lead';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
+import {
+  mutation_update_lead,
+  query_get_leads_by_userId,
+  query_get_lead_by_id,
+  mutation_add_lead,
+  mutation_delete_lead
+} from '../graphql/leads.operations'
 
 @Injectable({
   providedIn: 'root',
@@ -25,26 +32,38 @@ export class LeadService {
     return this._leadsSet.asObservable();
   }
 
-  getleadsByUserId(userId: string) {
+  updateLead(lead: Lead): Promise<Lead> {
+    const updateLeadInput ={
+        leadId: lead.leadId,
+        email: lead.email,
+        phone: lead.phone,
+        name: lead.name,
+        age: lead.age,
+        valor_total_plano: lead.valor_total_plano,
+        obs: lead.obs,
+        status: lead.status
+    }
+    return new Promise((resolver, reject) => {
+      this.apollo
+        .mutate({
+          mutation:mutation_update_lead,
+          variables: {updateLeadInput},
+        })
+        .subscribe((result: any) => {
+          resolver(result.data.lead as Lead);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
+    });
+  }
+
+  getleadsByUserId(userIdStr: string) {
     return (
       this.apollo
         .watchQuery({
-          query: gql`
-            {
-              leadsByUser(userId: "97b44920-251a-4dd9-b628-b839bb211b69") {
-                leadId
-                email
-                phone
-                name
-                age
-                valor_total_plano
-                status
-                obs
-                createdAt
-                updatedAt
-              }
-            }
-          `,
+          query:query_get_leads_by_userId,
+          variables: { userIdStr },
         })
         .valueChanges.subscribe((result: any) => {
           console.log('Result');
@@ -52,45 +71,48 @@ export class LeadService {
           this.dataStore.leadsSet = result.data.leadsByUser;
           this._leadsSet.next(this.dataStore.leadsSet);
         }),
-      catchError((error) => {
-        return throwError('Unable to fetch leads set!');
+      catchError((error: any) => {
+        throw new Error(error);
       })
     );
   }
 
-  getJSON() {
-    return (
-      this.http.get<Lead[]>('assets/leadData.json').subscribe((data) => {
-        this.dataStore.leadsSet = data;
-        this._leadsSet.next(this.dataStore.leadsSet);
-      }),
-      catchError((error) => {
-        return throwError('Unable to fetch leads set!');
-      })
-    );
-  }
-
-  leadById(id: string) {
-    return this.dataStore.leadsSet.find((x) => x.leadId == id);
-  }
-
-  addLead(lead: Lead): Promise<Lead> {
+  leadById(leadIdStr: string): Promise<Lead> {
     return new Promise((resolver, reject) => {
-      this.dataStore.leadsSet.push(lead);
-      this._leadsSet.next(Object.assign({}, this.dataStore).leadsSet);
-      resolver(lead);
+      this.apollo
+        .watchQuery({
+          query: query_get_lead_by_id ,
+          variables: { leadIdStr },
+        })
+        .valueChanges.subscribe((result: any) => {
+          resolver(result.data.lead);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
     });
   }
 
-  update(index: number, lead: Lead): Promise<Lead> {
-    return new Promise((resolver, reject) => {
-      this.dataStore.leadsSet[index] = lead;
-      this._leadsSet.next(Object.assign({}, this.dataStore).leadsSet);
-      resolver(lead);
+  addLead(lead: Lead, userRelated: string) {
+    const createLeadInput ={
+      email: lead.email,
+      phone: lead.phone,
+      name: lead.name,
+      age: lead.age,
+      valor_total_plano: lead.valor_total_plano,
+      obs: lead.obs,
+      status: lead.status
+  }
+    return this.apollo.mutate({
+      mutation: mutation_add_lead ,
+      variables: { createLeadInput ,userRelated},
     });
   }
 
-  deleteLead(id: string) {
-    console.log(`Delete lead: ${id}`);
+  deleteLead(leadIdStr: string) {
+    return this.apollo.mutate({
+      mutation: mutation_delete_lead,
+      variables: { leadIdStr },
+    });
   }
 }

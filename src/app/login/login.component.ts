@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedin = user != null;
         if (this.isLoggedin) {
           this.sessionService.putUser(user);
+          this.sessionService.putToken(user.idToken)
           this.router.navigate(['/main/leads']);
         }
       });

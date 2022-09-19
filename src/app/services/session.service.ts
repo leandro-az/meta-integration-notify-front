@@ -24,4 +24,14 @@ export class SessionService {
   public removeUser() {
     sessionStorage.removeItem('user');
   }
+
+  public putToken(token: string) {
+    sessionStorage.setItem('token', token);
+  }
+  public getToken(): string | null {
+    return sessionStorage.getItem('token')
+  }
+  public clearAllInfos(){
+    sessionStorage.clear()
+  }
 }

@@ -61,11 +61,11 @@ export class SidenavComponent implements OnInit {
     this.authService
       .signOut()
       .then(() => {
-        this.sessionService.removeUser();
+        this.sessionService.clearAllInfos();
         this.router.navigate(['/login']);
       })
       .catch(() => {
-        this.sessionService.removeUser();
+        this.sessionService.clearAllInfos();
         this.router.navigate(['/login']);
       });
   }

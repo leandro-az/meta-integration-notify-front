@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../app/login/login.component';
 import { LeadDashboardComponent } from '../app/lead-dashboard/lead-dashboard.component';
 import { MainComponent } from './main/main.component';
+import {RegistrationScreenComponent} from './registration-screen/registration-screen.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/main/leads', pathMatch: 'full' },
+  {path: 'registration', component: RegistrationScreenComponent},
   { path: 'login', component: LoginComponent },
   {
     path: 'main',
