@@ -3,5 +3,5 @@ export const environment = {
   google_client_id:
     '989386515709-jqmkor1mdimvasko7j1cev5nilmfgura.apps.googleusercontent.com',
   backend_base_url:
-    'localhost:3000/graphql',
+    'http://localhost:3000/graphql',
 };

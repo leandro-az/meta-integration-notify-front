@@ -11,7 +11,9 @@ import {
   MatSnackBar,
 } from '@angular/material/snack-bar';
 import {} from '@angular/material/';
+import {AddLeadDialogComponent} from '../add-lead-dialog/add-lead-dialog.component'
 import { EditLeadDialogComponent } from '../edit-lead-dialog/edit-lead-dialog.component';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-lead-list',
@@ -26,12 +28,13 @@ export class LeadListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private sessionService: SessionService,
   ) {}
 
   ngOnInit() {
     this.leadsData = this.leadService.leadsSet;
-    this.leadService.getleadsByUserId('97b44920-251a-4dd9-b628-b839bb211b69');
+    this.leadService.getleadsByUserId(this.sessionService.getUserIdSession());
     this.leadsData.subscribe((data) => {
       console.log('OLHA os dadoss2');
       console.log(data);
@@ -73,6 +76,19 @@ export class LeadListComponent implements OnInit {
       index,
     };
     const dialogRef = this.dialog.open(EditLeadDialogComponent, dialogConfig);
+    dialogRef
+      .afterClosed()
+      .subscribe((val) => console.log('Dialog output:', val));
+  }
+
+  openAddLeadDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '450px';
+    dialogConfig.data = {  userRelated:""};
+    const dialogRef = this.dialog.open(AddLeadDialogComponent, dialogConfig);
     dialogRef
       .afterClosed()
       .subscribe((val) => console.log('Dialog output:', val));

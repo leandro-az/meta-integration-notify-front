@@ -103,10 +103,18 @@ export class LeadService {
       obs: lead.obs,
       status: lead.status
   }
-    return this.apollo.mutate({
+  return new Promise((resolver, reject) => {
+    this.apollo.mutate({
       mutation: mutation_add_lead ,
       variables: { createLeadInput ,userRelated},
-    });
+    }).subscribe((result: any) => {
+        resolver(result.data.createLead);
+      }),
+      catchError((error: any) => {
+        throw new Error(error);
+      });
+  });
+    
   }
 
   deleteLead(leadIdStr: string) {

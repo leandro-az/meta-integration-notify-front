@@ -19,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { GraphQLModule } from './graphql/graphql.module';
-import {RegistrationScreenComponent} from './registration-screen/registration-screen.component'
+import {RegistrationScreenComponent} from './registration-screen/registration-screen.component';
+import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {RegistrationScreenComponent} from './registration-screen/registration-sc
     LeadDashboardComponent,
     EditLeadDialogComponent,
     MainComponent,
-    RegistrationScreenComponent
+    RegistrationScreenComponent,
+    AddLeadDialogComponent
   ],
   imports: [
     BrowserModule,

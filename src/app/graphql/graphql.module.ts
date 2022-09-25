@@ -21,7 +21,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     } else {
       return {
         headers: {
-          Authorization: `JWT ${token}`
+          Authorization: `${token}`
         }
       };
     }

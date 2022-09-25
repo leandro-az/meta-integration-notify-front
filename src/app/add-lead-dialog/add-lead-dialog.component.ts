@@ -12,59 +12,47 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { LeadStatus } from '../constants/lead-status.constant';
 
 @Component({
-  selector: 'app-edit-lead-dialog',
-  templateUrl: './edit-lead-dialog.component.html',
-  styleUrls: ['./edit-lead-dialog.component.scss'],
+  selector: 'app-add-lead-dialog',
+  templateUrl: './add-lead-dialog.component.html',
+  styleUrls: ['./add-lead-dialog.component.scss']
 })
-export class EditLeadDialogComponent implements OnInit {
+export class AddLeadDialogComponent implements OnInit {
+
   @ViewChild('leadId', { static: true }) leadIddvalue?: ElementRef;
   @ViewChild('indexvalue', { static: true }) indexvalue!: ElementRef;
-  name: string | undefined | null = '';
   form: FormGroup;
   avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
   statusOptions = [...Object.keys(LeadStatus)];
   userRelated=""
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<EditLeadDialogComponent>,
+    private dialogRef: MatDialogRef<AddLeadDialogComponent>,
     private leadService: LeadService,
-    @Inject(MAT_DIALOG_DATA)
-    {
-      leadId,
-      email,
-      name,
-      age,
-      obs,
-      valor_total_plano,
-      status,
-      createdAt,
-      userIdFk
-    }: Lead,
+    @Inject(MAT_DIALOG_DATA) {userRelated}: any 
   ) {
     this.form = fb.group({
-      leadId: [leadId],
-      email: [email],
-      name: [name],
-      age: [age],
-      obs: [obs],
-      valor_total_plano: [valor_total_plano],
-      status: [status],
-      createdAt: [createdAt],
+      leadId: [""],
+      email: [""],
+      name: [""],
+      age: [0],
+      obs: [""],
+      valor_total_plano: [0],
+      status: [""],
+      // createdAt: [createdAt],
       // index: [index],
     });
-    this.userRelated=userIdFk
-    this.name = name;
+    this.userRelated =userRelated
   }
 
   ngOnInit() {
-    console.log('EditLeadDialogComponent');
+    console.log('AddLeadDialogComponent');
   }
 
   onEdit() {
     this.leadService
-     .updateLead(this.form.value)
-      .then((lead) => {
-        this.dialogRef.close(lead);
+     .addLead(this.form.value,this.userRelated)
+      .then((data) => {
+        this.dialogRef.close(data);
       });
   }
 

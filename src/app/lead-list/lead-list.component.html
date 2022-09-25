@@ -1,6 +1,6 @@
 <div>
     <h3>LEADS</h3>
-    <button mat-raised-button color="gray">NOVO</button>
+    <button mat-raised-button color="gray" (click)="openAddLeadDialog()">NOVO</button>
     <mat-card *ngFor="let element of (leadsData | async); let i = index" class="kid">
         
         <mat-card-header>

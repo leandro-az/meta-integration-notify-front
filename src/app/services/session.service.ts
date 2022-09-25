@@ -34,4 +34,12 @@ export class SessionService {
   public clearAllInfos(){
     sessionStorage.clear()
   }
+
+  public setUserIdSession(userId:string){
+    sessionStorage.setItem('userIdSession',userId)
+  }
+  
+  public getUserIdSession(): string{
+    return sessionStorage.getItem('userIdSession') || ""
+  }
 }

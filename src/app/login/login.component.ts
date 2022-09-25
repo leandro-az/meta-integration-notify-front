@@ -6,6 +6,7 @@ import {
   SocialUser,
 } from '@abacritt/angularx-social-login';
 import { SessionService } from '../services/session.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: SocialAuthService,
     private router: Router,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -37,8 +39,27 @@ export class LoginComponent implements OnInit {
         this.isLoggedin = user != null;
         if (this.isLoggedin) {
           this.sessionService.putUser(user);
-          this.sessionService.putToken(user.idToken)
-          this.router.navigate(['/main/leads']);
+          this.sessionService.putToken(user.idToken);
+          this.userService
+            .getUserByEmail(user.email)
+            .then((result) => {
+              this.sessionService.setUserIdSession(result.userId);
+
+              this.router.navigate(['/main/leads']);
+            })
+            .catch((err) => {
+              console.log(err);
+              this.authService
+                .signOut()
+                .then(() => {
+                  this.sessionService.clearAllInfos();
+                  this.router.navigate(['/login']);
+                })
+                .catch(() => {
+                  this.sessionService.clearAllInfos();
+                  this.router.navigate(['/login']);
+                });
+            });
         }
       });
     }

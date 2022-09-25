@@ -88,7 +88,7 @@ export class UserService {
             variables: { emailStr },
         })
         .valueChanges.subscribe((result: any) => {
-          resolver(result.data.user);
+          resolver(result.data.userByEmail);
         }),
         catchError((error: any) => {
           throw new Error(error);
