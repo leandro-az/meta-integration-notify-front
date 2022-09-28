@@ -93,7 +93,7 @@ export class LeadService {
     });
   }
 
-  addLead(lead: Lead, userRelated: string) {
+  addLead(lead: Lead, userRelatedStr: string) {
     const createLeadInput ={
       email: lead.email,
       phone: lead.phone,
@@ -106,7 +106,7 @@ export class LeadService {
   return new Promise((resolver, reject) => {
     this.apollo.mutate({
       mutation: mutation_add_lead ,
-      variables: { createLeadInput ,userRelated},
+      variables: { createLeadInput ,userRelatedStr},
     }).subscribe((result: any) => {
         resolver(result.data.createLead);
       }),
@@ -118,9 +118,18 @@ export class LeadService {
   }
 
   deleteLead(leadIdStr: string) {
-    return this.apollo.mutate({
-      mutation: mutation_delete_lead,
-      variables: { leadIdStr },
+
+    return new Promise((resolver, reject) => {
+      this.apollo.mutate({
+        mutation: mutation_delete_lead,
+        variables: { leadIdStr },
+      }).subscribe((result: any) => {
+          resolver(result.data.createLead);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
     });
+    
   }
 }

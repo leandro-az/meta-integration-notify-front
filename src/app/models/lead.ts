@@ -15,9 +15,9 @@ export class Lead {
 
   obs?: string | null;
 
-  createdAt!: Date;
+  createdAt!: string;
 
-  updatedAt?: Date | null;
+  updatedAt?: string | null;
 
   userIdFk!: string;
 }

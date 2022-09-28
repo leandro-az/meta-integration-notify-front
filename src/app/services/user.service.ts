@@ -134,10 +134,18 @@ export class UserService {
       phone: user.phone,
       name: user.name,
   }
-    return this.apollo.mutate({
+  return new Promise((resolver, reject) => {
+    this.apollo.mutate({
       mutation: mutation_create_user_manager ,
       variables: { createUserInput},
-    });
+    }).subscribe((result: any) => {
+        resolver(result.data.user);
+      }),
+      catchError((error: any) => {
+        throw new Error(error);
+      });
+  });
+    
   }
 
 

@@ -23,7 +23,7 @@ export class EditLeadDialogComponent implements OnInit {
   form: FormGroup;
   avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
   statusOptions = [...Object.keys(LeadStatus)];
-  userRelated=""
+  createdAtFormated=""
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditLeadDialogComponent>,
@@ -52,7 +52,7 @@ export class EditLeadDialogComponent implements OnInit {
       createdAt: [createdAt],
       // index: [index],
     });
-    this.userRelated=userIdFk
+    this.createdAtFormated=(new Date(parseInt(createdAt,10)).toLocaleString())
     this.name = name;
   }
 

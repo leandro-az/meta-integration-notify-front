@@ -73,7 +73,7 @@ export class LeadListComponent implements OnInit {
       valor_total_plano,
       status,
       createdAt,
-      index,
+      index
     };
     const dialogRef = this.dialog.open(EditLeadDialogComponent, dialogConfig);
     dialogRef

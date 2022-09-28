@@ -19,7 +19,7 @@ export const query_get_employees_by_manager = gql` query ($managerUserIdStr:Stri
         name
         createdAt
         updatedAt
-        role
+        roleId
     }
 }`; 
 
@@ -30,7 +30,7 @@ export const query_get_manager_by_employee = gql` query ($employeeUserIdStr:Stri
         name
         createdAt
         updatedAt
-        role
+        roleId
     }
 }`; 
   
@@ -47,13 +47,14 @@ export const query_get_user_intergration = gql` query ($managerUserIdStr:String!
 export const mutation_create_user_manager = gql` mutation ($createUserInput:CreateUserInput!) {
     createUserManager(
       createUserInput: $createUserInput
-    )
+    ){
         userId
         email
         name
         createdAt
         updatedAt
-        role
+        roleId
+    }
   }
 `;
 
@@ -67,7 +68,7 @@ export const mutation_create_user_employee = gql` mutation ($managerUserIdStr:St
         name
         createdAt
         updatedAt
-        role
+        roleId
   }
 `;
 
@@ -80,7 +81,7 @@ export const mutation_update_user = gql` mutation ($updateUserInput:UpdateUserIn
         name
         createdAt
         updatedAt
-        role
+        roleId
   }
 `;
 

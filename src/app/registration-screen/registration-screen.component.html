@@ -3,26 +3,36 @@
   
     <mat-grid-tile>
         <div class="example-container">
-          <mat-form-field appearance="fill" class="width-50">
-            <mat-label>First Name</mat-label>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Nome</mat-label>
             <input matInput>
           </mat-form-field>
       
-          <mat-form-field appearance="fill" class="width-50 ml-2">
-            <mat-label>Surname</mat-label>
-            <input matInput>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Telefone</mat-label>
+            <input matInput >
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Gmail</mat-label>
+            <input matInput type="email" ngModel [email]="true">
           </mat-form-field>
           <br>
           <mat-form-field appearance="fill" class="width-100">
-            <mat-label>Email address</mat-label>
-            <input matInput placeholder="Ex. pat@example.com">
+            <mat-label>CREDCAR NUMBER</mat-label>
+            <input matInput placeholder="fill"  [value]="defaultCredicard" readonly="true">
           </mat-form-field>
           <br>
-          <div class="row">
-            <div class="input-field col s12">
-                <mat-label>Already have an account? <a href="login.php">Login</a></mat-label>
-            </div>
-        </div>
+
+           <button mat-raised-button color="black" (click)="createUser()" class="width-50">
+              <mat-icon>save</mat-icon> Salvar
+          </button>
+  
+            <button mat-raised-button color="black" (click)="redirectToLoging()" class="width-50 ml-2">
+              <mat-icon>login</mat-icon> Já Possuo Cadastro / Login
+          </button>
+
+          
+          
         </div>
     </mat-grid-tile>
     </mat-grid-list>

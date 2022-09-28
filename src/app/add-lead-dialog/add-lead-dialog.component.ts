@@ -10,6 +10,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LeadService } from '../services/lead.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { LeadStatus } from '../constants/lead-status.constant';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-add-lead-dialog',
@@ -23,17 +24,16 @@ export class AddLeadDialogComponent implements OnInit {
   form: FormGroup;
   avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
   statusOptions = [...Object.keys(LeadStatus)];
-  userRelated=""
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddLeadDialogComponent>,
     private leadService: LeadService,
-    @Inject(MAT_DIALOG_DATA) {userRelated}: any 
+    private sessionService : SessionService
   ) {
     this.form = fb.group({
-      leadId: [""],
       email: [""],
       name: [""],
+      phone: [""],
       age: [0],
       obs: [""],
       valor_total_plano: [0],
@@ -41,7 +41,6 @@ export class AddLeadDialogComponent implements OnInit {
       // createdAt: [createdAt],
       // index: [index],
     });
-    this.userRelated =userRelated
   }
 
   ngOnInit() {
@@ -50,7 +49,7 @@ export class AddLeadDialogComponent implements OnInit {
 
   onEdit() {
     this.leadService
-     .addLead(this.form.value,this.userRelated)
+     .addLead(this.form.value,this.sessionService.getUserIdSession())
       .then((data) => {
         this.dialogRef.close(data);
       });
