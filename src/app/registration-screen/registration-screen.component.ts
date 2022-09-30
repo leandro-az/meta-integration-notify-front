@@ -7,7 +7,7 @@ import {
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
-
+import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-registration-screen',
   templateUrl: './registration-screen.component.html',
@@ -20,29 +20,46 @@ export class RegistrationScreenComponent implements OnInit {
   phone=""
 
   socialUser?: SocialUser | null;
+  form: FormGroup;
   constructor(
+    private fb: FormBuilder,
     private authService: SocialAuthService,
     private router: Router,
     private userService: UserService
-    ) { }
+    ) {
+      this.form = fb.group({
+        email: [""],
+        phone: [""],
+        name: [""],
+      });
+     }
 
   ngOnInit(): void {
     console.log('RegistrationScreenComponent')
   }
 
   createUser(): void{
+    
+    const {name,email,phone} = this.form.value
     const user: User ={
-      email:this.email,
-      name:this.name,
-      phone:this.phone,
+      email:email,
+      name:name,
+      phone:phone,
       userId:"",
       createdAt: new Date(),
       roleId:1,
     }
     this.userService.createNewUserManager(user).then(res=>{
       console.log(res)
-      alert("Acesso Criado Com sucesso")
-      this.router.navigate(['/login'])
+      if(res && res.userId){
+        this.userService.createUserIntegration(res.userId).then(res=>{
+          console.log("Integração gerada com sucesso!")
+          alert("Acesso Criado Com sucesso")
+          this.router.navigate(['/login'])
+        }).catch(err=>{
+          console.log("Erro na geração da integração!")
+        })
+      }
     }).catch(err=>{
       console.log(err)
       alert("Erro ao criar acesso")

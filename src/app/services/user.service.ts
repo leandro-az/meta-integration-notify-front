@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import {UserIntegration} from '../models/user-integration'
+import { UserIntegration } from '../models/user-integration';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -15,8 +15,8 @@ import {
   mutation_create_user_employee,
   mutation_delete_user_employee,
   mutation_delete_user_manager,
-  mutation_creta_user_intergration
-} from '../graphql/users.operations'
+  mutation_creta_user_intergration,
+} from '../graphql/users.operations';
 
 @Injectable({
   providedIn: 'root',
@@ -39,20 +39,21 @@ export class UserService {
   }
 
   updateUser(user: User): Promise<User> {
-    const updateUserInput ={
-        userId: user.userId,
-        email: user.email,
-        phone: user.phone,
-        name: user.name,
-    }
+    const updateUserInput = {
+      userId: user.userId,
+      email: user.email,
+      phone: user.phone,
+      name: user.name,
+    };
     return new Promise((resolver, reject) => {
       this.apollo
         .mutate({
-          mutation:mutation_update_user,
-          variables: {updateUserInput},
+          fetchPolicy: 'no-cache',
+          mutation: mutation_update_user,
+          variables: { updateUserInput },
         })
         .subscribe((result: any) => {
-          resolver(result.data.user as User);
+          resolver(result.data.updateUser as User);
         }),
         catchError((error: any) => {
           throw new Error(error);
@@ -60,11 +61,12 @@ export class UserService {
     });
   }
 
-  getEmployessByManager(managerUserIdStr:String) {
+  getEmployessByManager(managerUserIdStr: String) {
     return (
       this.apollo
         .watchQuery({
-          query:query_get_employees_by_manager,
+          fetchPolicy: 'no-cache',
+          query: query_get_employees_by_manager,
           variables: { managerUserIdStr },
         })
         .valueChanges.subscribe((result: any) => {
@@ -79,15 +81,18 @@ export class UserService {
     );
   }
 
-
   getUserByEmail(emailStr: string): Promise<User> {
     return new Promise((resolver, reject) => {
       this.apollo
         .watchQuery({
-            query:query_get_user_by_email,
-            variables: { emailStr },
+          fetchPolicy: 'no-cache',
+          query: query_get_user_by_email,
+          variables: { emailStr },
         })
         .valueChanges.subscribe((result: any) => {
+          if (!result.data.userByEmail) {
+            reject('User not found');
+          }
           resolver(result.data.userByEmail);
         }),
         catchError((error: any) => {
@@ -100,11 +105,12 @@ export class UserService {
     return new Promise((resolver, reject) => {
       this.apollo
         .watchQuery({
-            query: query_get_manager_by_employee,
-            variables: { employeeUserIdStr },
+          fetchPolicy: 'no-cache',
+          query: query_get_manager_by_employee,
+          variables: { employeeUserIdStr },
         })
         .valueChanges.subscribe((result: any) => {
-          resolver(result.data.user);
+          resolver(result.data.managerByEmployee);
         }),
         catchError((error: any) => {
           throw new Error(error);
@@ -112,15 +118,16 @@ export class UserService {
     });
   }
 
-  getUserIntegration(managerUserIdStr:String): Promise<UserIntegration> {
+  getUserIntegration(managerUserIdStr: String): Promise<UserIntegration> {
     return new Promise((resolver, reject) => {
       this.apollo
         .watchQuery({
-            query: query_get_user_intergration,
-            variables: { managerUserIdStr },
+          fetchPolicy: 'no-cache',
+          query: query_get_user_intergration,
+          variables: { managerUserIdStr },
         })
         .valueChanges.subscribe((result: any) => {
-          resolver(result.data.user);
+          resolver(result.data.usersIntegration);
         }),
         catchError((error: any) => {
           throw new Error(error);
@@ -128,60 +135,64 @@ export class UserService {
     });
   }
 
-  createNewUserManager(user: User) {
-    const createUserInput ={
+  createNewUserManager(user: User):Promise<User> {
+    const createUserInput = {
       email: user.email,
       phone: user.phone,
       name: user.name,
+    };
+    return new Promise((resolver, reject) => {
+      this.apollo
+        .mutate({
+          fetchPolicy: 'no-cache',
+          mutation: mutation_create_user_manager,
+          variables: { createUserInput },
+        })
+        .subscribe((result: any) => {
+          resolver(result.data.createUserManager);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
+    });
   }
-  return new Promise((resolver, reject) => {
-    this.apollo.mutate({
-      mutation: mutation_create_user_manager ,
-      variables: { createUserInput},
-    }).subscribe((result: any) => {
-        resolver(result.data.user);
-      }),
-      catchError((error: any) => {
-        throw new Error(error);
-      });
-  });
-    
-  }
-
 
   createNewUserEmployee(user: User, managerUserIdStr: string) {
-    const createUserInput ={
+    const createUserInput = {
       email: user.email,
       phone: user.phone,
       name: user.name,
-  }
+    };
     return this.apollo.mutate({
-      mutation: mutation_create_user_employee ,
-      variables: { createUserInput ,managerUserIdStr},
+      fetchPolicy: 'no-cache',
+      mutation: mutation_create_user_employee,
+      variables: { createUserInput, managerUserIdStr },
     });
   }
 
   deleteUserEmployee(employeeUserIdStr: string) {
     return this.apollo.mutate({
+      fetchPolicy: 'no-cache',
       mutation: mutation_delete_user_employee,
       variables: { employeeUserIdStr },
     });
   }
   deleteUserManager(managerUserIdStr: string) {
     return this.apollo.mutate({
+      fetchPolicy: 'no-cache',
       mutation: mutation_delete_user_manager,
       variables: { managerUserIdStr },
     });
   }
 
-  createUserIntegration(managerUserIdStr:String): Promise<UserIntegration> {
+  createUserIntegration(managerUserIdStr: String): Promise<UserIntegration> {
     return new Promise((resolver, reject) => {
       this.apollo
-        .watchQuery({
-            query: mutation_creta_user_intergration,
-            variables: { managerUserIdStr },
-        })
-        .valueChanges.subscribe((result: any) => {
+        .mutate({
+          fetchPolicy: 'no-cache',
+          mutation: mutation_creta_user_intergration,
+          variables: { managerUserIdStr },
+        }).subscribe((result: any) => {
           resolver(result.data.user);
         }),
         catchError((error: any) => {

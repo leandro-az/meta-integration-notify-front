@@ -1,8 +1,8 @@
 export class UserIntegration{
-        userIntegrationId!: String
-        integrationUrl!: String
-        integrationToken!: String
-        createdAt!: String
-        updatedAt?: String
+        userIntegrationId!: string
+        integrationUrl!: string
+        integrationToken!: string
+        createdAt!: string
+        updatedAt?: string
       
 }

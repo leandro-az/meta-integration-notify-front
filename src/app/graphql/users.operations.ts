@@ -85,8 +85,8 @@ export const mutation_update_user = gql` mutation ($updateUserInput:UpdateUserIn
   }
 `;
 
-export const mutation_creta_user_intergration = gql` query ($managerUserIdStr:String!) {
-    usersIntegration(managerUserId: $managerUserIdStr) {
+export const mutation_creta_user_intergration = gql` mutation ($managerUserIdStr:String!) {
+    createUserIntegration(managerUserId: $managerUserIdStr) {
         userIntegrationId
         integrationUrl
         integrationToken

@@ -1,20 +1,20 @@
 <h2>CADASTRO</h2>
-<mat-grid-list cols="1" rowHeight="500px">
+<mat-grid-list cols="1" rowHeight="500px" [formGroup]="form">
   
     <mat-grid-tile>
         <div class="example-container">
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Nome</mat-label>
-            <input matInput>
+            <input matInput formControlName="name">
           </mat-form-field>
       
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Telefone</mat-label>
-            <input matInput >
+            <input matInput formControlName="phone">
           </mat-form-field>
           <mat-form-field appearance="fill" class="width-100">
             <mat-label>Gmail</mat-label>
-            <input matInput type="email" ngModel [email]="true">
+            <input matInput type="email" ngModel [email]="true" formControlName="email">
           </mat-form-field>
           <br>
           <mat-form-field appearance="fill" class="width-100">

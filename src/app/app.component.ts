@@ -46,16 +46,17 @@ export class AppComponent implements OnInit {
     //   email: ['', Validators.required],
     //   password: ['', Validators.required],
     // });
-    this.authService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedin = user != null;
-      console.log(this.socialUser);
-    });
+    // this.authService.authState.subscribe((user) => {
+    //   this.socialUser = user;
+    //   this.isLoggedin = user != null;
+    //   console.log(this.socialUser);
+    // });
     // if (this.isLoggedin) {
     //   this.router.navigate(['/leads']);
     // } else {
     //   this.router.navigate(['/login']);
     // }
+    console.log('AppComponent')
   }
   logOut(): void {
     this.authService.signOut();

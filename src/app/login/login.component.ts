@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService
   ) {}
 
+ 
+
   ngOnInit() {
     // this.loginForm = this.formBuilder.group({
     //   email: ['', Validators.required],
@@ -30,35 +32,35 @@ export class LoginComponent implements OnInit {
     // });
     this.socialUser = this.sessionService.getUser();
     this.isLoggedin = this.socialUser ? true : false;
-    console.log(this.socialUser);
     if (this.isLoggedin) {
-      this.router.navigate(['/main/leads']);
+      this.router.navigate(['/main/leads'])
     } else {
       this.authService.authState.subscribe((user) => {
         this.socialUser = user;
-        this.isLoggedin = user != null;
-        if (this.isLoggedin) {
-          this.sessionService.putUser(user);
+        // this.isLoggedin = user != null;
+        if (this.socialUser) {
           this.sessionService.putToken(user.idToken);
           this.userService
-            .getUserByEmail(user.email)
+            .getUserByEmail(this.socialUser.email)
             .then((result) => {
+              this.sessionService.putUser(user);
               this.sessionService.setUserIdSession(result.userId);
-
+              this.isLoggedin=true;
               this.router.navigate(['/main/leads']);
             })
             .catch((err) => {
               console.log(err);
               this.authService
                 .signOut()
-                .then(() => {
-                  this.sessionService.clearAllInfos();
-                  this.router.navigate(['/login']);
+                .then((res) => {
+                 console.log(res);
                 })
-                .catch(() => {
-                  this.sessionService.clearAllInfos();
-                  this.router.navigate(['/login']);
+                .catch((err) => {
+                  console.log(err);
                 });
+                this.sessionService.clearAllInfos();
+                alert('Usuário não econtrado! Você será redirecionado para a área de cadastro!')
+                this.router.navigate(['/registration'])
             });
         }
       });

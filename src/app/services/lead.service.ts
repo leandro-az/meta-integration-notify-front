@@ -46,6 +46,7 @@ export class LeadService {
     return new Promise((resolver, reject) => {
       this.apollo
         .mutate({
+          fetchPolicy: 'no-cache',
           mutation:mutation_update_lead,
           variables: {updateLeadInput},
         })
@@ -62,6 +63,7 @@ export class LeadService {
     return (
       this.apollo
         .watchQuery({
+          fetchPolicy: 'no-cache',
           query:query_get_leads_by_userId,
           variables: { userIdStr },
         })
@@ -81,6 +83,7 @@ export class LeadService {
     return new Promise((resolver, reject) => {
       this.apollo
         .watchQuery({
+          fetchPolicy: 'no-cache',
           query: query_get_lead_by_id ,
           variables: { leadIdStr },
         })
@@ -105,6 +108,7 @@ export class LeadService {
   }
   return new Promise((resolver, reject) => {
     this.apollo.mutate({
+      fetchPolicy: 'no-cache',
       mutation: mutation_add_lead ,
       variables: { createLeadInput ,userRelatedStr},
     }).subscribe((result: any) => {
@@ -121,6 +125,7 @@ export class LeadService {
 
     return new Promise((resolver, reject) => {
       this.apollo.mutate({
+        fetchPolicy: 'no-cache',
         mutation: mutation_delete_lead,
         variables: { leadIdStr },
       }).subscribe((result: any) => {

@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../app/login/login.component';
 import { LeadDashboardComponent } from '../app/lead-dashboard/lead-dashboard.component';
 import { MainComponent } from './main/main.component';
-import {RegistrationScreenComponent} from './registration-screen/registration-screen.component'
+import { RegistrationScreenComponent } from './registration-screen/registration-screen.component';
+import { IntegrationComponent } from './integration/integration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main/leads', pathMatch: 'full' },
-  {path: 'registration', component: RegistrationScreenComponent},
+  { path: 'registration', component: RegistrationScreenComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'main',
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'leads',
         component: LeadDashboardComponent,
+      },
+      { 
+        path: 'integration',
+       component: IntegrationComponent 
       },
       {
         path: '',
@@ -35,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

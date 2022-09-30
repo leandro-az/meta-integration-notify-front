@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { GraphQLModule } from './graphql/graphql.module';
 import {RegistrationScreenComponent} from './registration-screen/registration-screen.component';
-import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.component'
+import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.component';
+import { IntegrationComponent } from './integration/integration.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.compon
     EditLeadDialogComponent,
     MainComponent,
     RegistrationScreenComponent,
-    AddLeadDialogComponent
+    AddLeadDialogComponent,
+    IntegrationComponent
   ],
   imports: [
     BrowserModule,

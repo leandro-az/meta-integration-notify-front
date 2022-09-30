@@ -1,0 +1,30 @@
+<div>
+  <h3>INTEGRAÇÃO</h3>
+<mat-grid-list cols="1" rowHeight="500px" [formGroup]="form">
+  
+    <mat-grid-tile>
+        <div class="example-container">
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="userIntegrationId" readonly="true">
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Url de Integração:</mat-label>
+            <input matInput formControlName="integrationUrl" readonly="true">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Token de Integração:</mat-label>
+            <input matInput formControlName="integrationToken" readonly="true">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Data de Geração:</mat-label>
+            <input matInput formControlName="createdAt" readonly="true">
+          </mat-form-field>
+          <br>
+        </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+</div>    

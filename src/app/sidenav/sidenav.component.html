@@ -17,27 +17,26 @@
 
     </mat-toolbar>
     <mat-nav-list>
-      <mat-list-item>
-        <mat-icon>link</mat-icon> <span class="user-name">
-          <strong>INTEGRAÇÃO</strong>
-        </span>
-      </mat-list-item>
+      <a [routerLink]="['/main/integration']">
+          <mat-list-item>
+          <mat-icon>link</mat-icon> <span class="user-name">
+            <strong>INTEGRAÇÃO</strong>
+          </span>
+        </mat-list-item>
+        </a>
+        
       <mat-list-item>
         <mat-icon>attribution</mat-icon> <span class="user-name">
           <strong>FUNCIONÁRIOS</strong>
         </span>
       </mat-list-item>
-      <mat-list-item>
-        <!-- <a [routerLink]="['/main/leads']">
+      <a [routerLink]="['/main/leads']">
+          <mat-list-item>
           <mat-icon>people</mat-icon> <span class="user-name">
-            <strong> Leads</strong>
+            <strong>LEADS</strong>
           </span>
-        </a> -->
-        <mat-icon>people</mat-icon> <span class="user-name">
-          <strong>LEADS</strong>
-        </span>
-
-      </mat-list-item>
+        </mat-list-item>
+        </a>
     </mat-nav-list>
     <div class="copyright-container">
       <div fxFlex>
