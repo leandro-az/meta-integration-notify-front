@@ -72,7 +72,7 @@ export class UserService {
         .valueChanges.subscribe((result: any) => {
           console.log('Result');
           console.log(result.data);
-          this.dataStore.usersSet = result.data.usersByUser;
+          this.dataStore.usersSet = result.data.employeesByManager;
           this._usersSet.next(this.dataStore.usersSet);
         }),
       catchError((error: any) => {
@@ -157,16 +157,24 @@ export class UserService {
     });
   }
 
-  createNewUserEmployee(user: User, managerUserIdStr: string) {
+  createNewUserEmployee(user: User, managerUserIdStr: string):Promise<User> {
     const createUserInput = {
       email: user.email,
       phone: user.phone,
       name: user.name,
     };
-    return this.apollo.mutate({
-      fetchPolicy: 'no-cache',
-      mutation: mutation_create_user_employee,
-      variables: { createUserInput, managerUserIdStr },
+    return new Promise((resolver, reject) => {
+      this.apollo.mutate({
+        fetchPolicy: 'no-cache',
+        mutation: mutation_create_user_employee,
+        variables: { createUserInput, managerUserIdStr },
+      })
+        .subscribe((result: any) => {
+          resolver(result.data.createUserEmployee);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
     });
   }
 
@@ -193,7 +201,7 @@ export class UserService {
           mutation: mutation_creta_user_intergration,
           variables: { managerUserIdStr },
         }).subscribe((result: any) => {
-          resolver(result.data.user);
+          resolver(result.data.createUserIntegration);
         }),
         catchError((error: any) => {
           throw new Error(error);

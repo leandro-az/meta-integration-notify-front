@@ -9,7 +9,7 @@ export class User{
 
   roleId!: number 
 
-  createdAt!: Date;
+  createdAt!: string;
 
-  updatedAt?: Date 
+  updatedAt?: string 
 }

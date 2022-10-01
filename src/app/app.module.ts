@@ -13,6 +13,7 @@ import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { LeadListComponent } from './lead-list/lead-list.component';
+import {EmployeeListComponent} from './employee-list/employee-list.component'
 import { EditLeadDialogComponent } from './edit-lead-dialog/edit-lead-dialog.component';
 import { LeadDashboardComponent } from './lead-dashboard/lead-dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +22,9 @@ import { MainComponent } from './main/main.component';
 import { GraphQLModule } from './graphql/graphql.module';
 import {RegistrationScreenComponent} from './registration-screen/registration-screen.component';
 import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.component';
-import { IntegrationComponent } from './integration/integration.component'
+import { IntegrationComponent } from './integration/integration.component';
+import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'
+import {EditEmployeeDialogComponent} from './edit-employee-dialog/edit-employee-dialog.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { IntegrationComponent } from './integration/integration.component'
     MainComponent,
     RegistrationScreenComponent,
     AddLeadDialogComponent,
-    IntegrationComponent
+    IntegrationComponent,
+    AddEmployeeDialogComponent,
+    EmployeeListComponent,
+    EditEmployeeDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,13 @@
-<h2 mat-dialog-title>{{name}}</h2>
+<h2 mat-dialog-title> NOVO FUNCIONÁRIO </h2>
 <mat-dialog-content [formGroup]="form">
     <div class="example-container">
-        <mat-form-field>
-            <input matInput placeholder="userId" formControlName="userId" readonly="readonly" #idvalue />
-        </mat-form-field>
-        <mat-form-field style="display:none">
-            <input matInput placeholder="index" formControlName="index" readonly="readonly" #indexvalue />
-        </mat-form-field>
-        
 
         <mat-form-field>
-            <input matInput placeholder="Data de criação" [value]="createdAtFormated" readonly="readonly">
-            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker> -->
+            <input matInput placeholder="Nome" formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Telefone" formControlName="phone" />
         </mat-form-field>
 
         <mat-form-field>

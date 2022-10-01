@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
+import { User } from '../models/user';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from '../services/user.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-employee-dialog',
@@ -6,10 +16,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-employee-dialog.component.scss']
 })
 export class EditEmployeeDialogComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  @ViewChild('leadId', { static: true }) leadIddvalue?: ElementRef;
+  @ViewChild('indexvalue', { static: true }) indexvalue!: ElementRef;
+  name: string | undefined | null = '';
+  form: FormGroup;
+  avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
+  createdAtFormated=""
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<EditEmployeeDialogComponent>,
+    private userService: UserService,
+    @Inject(MAT_DIALOG_DATA)
+    {
+      userId,
+      email,
+      name,
+      createdAt,
+    }: User,
+  ) {
+    this.form = fb.group({
+      userId: [userId],
+      email: [email],
+      name: [name],
+      createdAt: [createdAt],
+      // index: [index],
+    });
+    this.createdAtFormated=(new Date(parseInt(createdAt,10)).toLocaleString())
+    this.name = name;
   }
 
+  ngOnInit() {
+    console.log('EditEmployeeDialogComponent');
+  }
+
+  onEdit() {
+    this.userService
+     .updateUser(this.form.value)
+      .then((lead) => {
+        this.dialogRef.close(lead);
+      });
+  }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
 }
