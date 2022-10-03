@@ -21,7 +21,6 @@ export class AddEmployeeDialogComponent implements OnInit {
   @ViewChild('userId', { static: true }) userIddvalue?: ElementRef;
   @ViewChild('indexvalue', { static: true }) indexvalue!: ElementRef;
   form: FormGroup;
-  avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddEmployeeDialogComponent>,

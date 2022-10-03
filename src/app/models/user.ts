@@ -12,4 +12,6 @@ export class User{
   createdAt!: string;
 
   updatedAt?: string 
+
+  icon!: string
 }

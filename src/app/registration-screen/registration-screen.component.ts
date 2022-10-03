@@ -46,8 +46,9 @@ export class RegistrationScreenComponent implements OnInit {
       name:name,
       phone:phone,
       userId:"",
-      createdAt: new Date(),
+      createdAt: (new Date()).toLocaleString(),
       roleId:1,
+      icon: 'svg-1'
     }
     this.userService.createNewUserManager(user).then(res=>{
       console.log(res)

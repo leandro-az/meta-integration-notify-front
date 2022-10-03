@@ -78,7 +78,8 @@ export class LeadListComponent implements OnInit {
     const dialogRef = this.dialog.open(EditLeadDialogComponent, dialogConfig);
     dialogRef
       .afterClosed()
-      .subscribe((val) => console.log('Dialog output:', val));
+      .subscribe((val) => {console.log('Dialog output:', val); this.ngOnInit()});
+
   }
 
   openAddLeadDialog() {
@@ -91,7 +92,7 @@ export class LeadListComponent implements OnInit {
     const dialogRef = this.dialog.open(AddLeadDialogComponent, dialogConfig);
     dialogRef
       .afterClosed()
-      .subscribe((val) => console.log('Dialog output:', val));
+      .subscribe((val) => {console.log('Dialog output:', val); this.ngOnInit()});
   }
 
   openSnackBar(
@@ -104,9 +105,7 @@ export class LeadListComponent implements OnInit {
   }
 
   deleteItem(id: string) {
-    this.leadService.deleteLead(id);
+    this.leadService.deleteLead(id).then(()=>{ this.ngOnInit()});
   }
-  getSvgIcon(): string {
-    return `svg-${Math.floor(Math.random() * 15) + 1}`;
-  }
+  
 }

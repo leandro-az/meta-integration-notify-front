@@ -22,7 +22,6 @@ export class AddLeadDialogComponent implements OnInit {
   @ViewChild('leadId', { static: true }) leadIddvalue?: ElementRef;
   @ViewChild('indexvalue', { static: true }) indexvalue!: ElementRef;
   form: FormGroup;
-  avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
   statusOptions = [...Object.keys(LeadStatus)];
   constructor(
     private fb: FormBuilder,

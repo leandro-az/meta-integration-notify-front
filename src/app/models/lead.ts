@@ -20,4 +20,6 @@ export class Lead {
   updatedAt?: string | null;
 
   userIdFk!: string;
+
+  icon!: string
 }

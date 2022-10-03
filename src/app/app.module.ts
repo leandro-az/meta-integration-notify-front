@@ -24,7 +24,7 @@ import {RegistrationScreenComponent} from './registration-screen/registration-sc
 import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.component';
 import { IntegrationComponent } from './integration/integration.component';
 import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'
-import {EditEmployeeDialogComponent} from './edit-employee-dialog/edit-employee-dialog.component'
+import {EditEmployeeDialogComponent} from './edit-employee-dialog/edit-employee-dialog.component';
 
 @NgModule({
   declarations: [

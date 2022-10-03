@@ -13,6 +13,7 @@ export const query_get_leads_by_userId = gql`
       obs
       createdAt
       updatedAt
+      icon
     }
   }
 `;
@@ -30,6 +31,7 @@ export const query_get_lead_by_id = gql`
       obs
       createdAt
       updatedAt
+      icon
     }
   }
 `;
@@ -50,6 +52,7 @@ export const mutation_add_lead = gql`
       obs
       createdAt
       updatedAt
+      icon
     }
   }
 `;
@@ -67,6 +70,7 @@ export const mutation_update_lead = gql`
       obs
       createdAt
       updatedAt
+      icon
     }
   }
 `;

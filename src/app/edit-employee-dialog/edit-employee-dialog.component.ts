@@ -20,7 +20,6 @@ export class EditEmployeeDialogComponent implements OnInit {
   @ViewChild('indexvalue', { static: true }) indexvalue!: ElementRef;
   name: string | undefined | null = '';
   form: FormGroup;
-  avatars = ['svg-1', 'svg-2', 'svg-3', 'svg-4'];
   createdAtFormated=""
   constructor(
     private fb: FormBuilder,

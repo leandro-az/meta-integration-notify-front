@@ -178,12 +178,21 @@ export class UserService {
     });
   }
 
-  deleteUserEmployee(employeeUserIdStr: string) {
-    return this.apollo.mutate({
-      fetchPolicy: 'no-cache',
-      mutation: mutation_delete_user_employee,
-      variables: { employeeUserIdStr },
+  deleteUserEmployee(employeeUserIdStr: string):Promise<any> {
+    return new Promise((resolver, reject) => {
+      this.apollo.mutate({
+        fetchPolicy: 'no-cache',
+        mutation: mutation_delete_user_employee,
+        variables: { employeeUserIdStr },
+      })
+        .subscribe((result: any) => {
+          resolver(result.data.removeUserEmployee);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
     });
+    ;
   }
   deleteUserManager(managerUserIdStr: string) {
     return this.apollo.mutate({

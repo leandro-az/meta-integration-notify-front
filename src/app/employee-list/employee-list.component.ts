@@ -11,14 +11,14 @@ import {
   MatSnackBar,
 } from '@angular/material/snack-bar';
 import {} from '@angular/material/';
-import { AddEmployeeDialogComponent} from '../add-employee-dialog/add-employee-dialog.component'
+import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
 import { EditEmployeeDialogComponent } from '../edit-employee-dialog/edit-employee-dialog.component';
 import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss']
+  styleUrls: ['./employee-list.component.scss'],
 })
 export class EmployeeListComponent implements OnInit {
   @Input() employeesData?: Observable<User[]>;
@@ -29,12 +29,14 @@ export class EmployeeListComponent implements OnInit {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private sessionService: SessionService,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit() {
     this.employeesData = this.employeeService.usersSet;
-    this.employeeService.getEmployessByManager(this.sessionService.getUserIdSession());
+    this.employeeService.getEmployessByManager(
+      this.sessionService.getUserIdSession()
+    );
     this.employeesData.subscribe((data) => {
       console.log('OLHA os dadoss2');
       console.log(data);
@@ -46,15 +48,7 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['employees', employee.userId]);
   }
 
-  openUserDialog(
-    index: number,
-    {
-      userId,
-      email,
-      name,
-      createdAt,
-    }: User
-  ) {
+  openUserDialog(index: number, { userId, email, name, createdAt }: User) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -65,12 +59,16 @@ export class EmployeeListComponent implements OnInit {
       name,
       createdAt,
       index,
-      userId
+      userId,
     };
-    const dialogRef = this.dialog.open(EditEmployeeDialogComponent, dialogConfig);
-    dialogRef
-      .afterClosed()
-      .subscribe((val) => console.log('Dialog output:', val));
+    const dialogRef = this.dialog.open(
+      EditEmployeeDialogComponent,
+      dialogConfig
+    );
+    dialogRef.afterClosed().subscribe((val) => {
+      console.log('Dialog output:', val);
+      this.ngOnInit();
+    });
   }
 
   openAddUserDialog() {
@@ -79,11 +77,15 @@ export class EmployeeListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '450px';
-    dialogConfig.data = {  userRelated:""};
-    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, dialogConfig);
-    dialogRef
-      .afterClosed()
-      .subscribe((val) => console.log('Dialog output:', val));
+    dialogConfig.data = { userRelated: '' };
+    const dialogRef = this.dialog.open(
+      AddEmployeeDialogComponent,
+      dialogConfig
+    );
+    dialogRef.afterClosed().subscribe((val) => {
+      console.log('Dialog output:', val);
+      this.ngOnInit();
+    });
   }
 
   openSnackBar(
@@ -95,10 +97,16 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  deleteItem(id: string) {
-    this.employeeService.deleteUserEmployee(id);
+  deleteItem(userId: string) {
+    this.employeeService
+      .deleteUserEmployee(userId)
+      .then(() => {
+        console.log('Deleted');
+        this.ngOnInit();
+      })
+      .catch(() => {
+        console.log('not deleted');
+      });
   }
-  getSvgIcon(): string {
-    return `svg-${Math.floor(Math.random() * 15) + 1}`;
-  }
+  
 }

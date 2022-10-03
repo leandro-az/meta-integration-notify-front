@@ -5,6 +5,7 @@ import { LeadDashboardComponent } from '../app/lead-dashboard/lead-dashboard.com
 import { MainComponent } from './main/main.component';
 import { RegistrationScreenComponent } from './registration-screen/registration-screen.component';
 import { IntegrationComponent } from './integration/integration.component';
+import { EmployeeListComponent} from "./employee-list/employee-list.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/main/leads', pathMatch: 'full' },
@@ -21,6 +22,10 @@ const routes: Routes = [
       { 
         path: 'integration',
        component: IntegrationComponent 
+      },
+      {
+        path: 'employees',
+        component: EmployeeListComponent
       },
       {
         path: '',

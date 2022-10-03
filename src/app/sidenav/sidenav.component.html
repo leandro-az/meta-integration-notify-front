@@ -25,11 +25,14 @@
         </mat-list-item>
         </a>
         
-      <mat-list-item>
-        <mat-icon>attribution</mat-icon> <span class="user-name">
-          <strong>FUNCIONÁRIOS</strong>
-        </span>
-      </mat-list-item>
+      <a [routerLink]="['/main/employees']">
+        <mat-list-item>
+          <mat-icon>attribution</mat-icon> <span class="user-name">
+            <strong>FUNCIONÁRIOS</strong>
+          </span>
+        </mat-list-item>
+      </a>
+
       <a [routerLink]="['/main/leads']">
           <mat-list-item>
           <mat-icon>people</mat-icon> <span class="user-name">
