@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Lead {
   leadId!: string;
 
@@ -22,4 +24,7 @@ export class Lead {
   userIdFk!: string;
 
   icon!: string
+
+  userIdFk2?: User
+
 }

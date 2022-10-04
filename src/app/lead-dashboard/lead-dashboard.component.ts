@@ -19,7 +19,7 @@ export class LeadDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.socialUser = this.sessionService.getUser();
+    this.socialUser = this.sessionService.getGoogleUser();
     this.isLoggedin = this.socialUser ? true : false;
     if (!this.isLoggedin) this.router.navigate(['login']);
   }

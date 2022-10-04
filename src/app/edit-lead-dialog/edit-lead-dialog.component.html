@@ -38,6 +38,13 @@
             <!-- <mat-label>Compétence</mat-label> -->
         </mat-form-field>
 
+        <mat-form-field *ngIf="showUserOptinons">
+            <mat-select name="Encarregado" placeholder="Encarregado" [(value)]="encarregado">
+                <mat-option *ngFor="let option of usersOptions" [value]="option.userId">{{option.name}}</mat-option>
+            </mat-select>
+            <!-- <mat-label>Compétence</mat-label> -->
+        </mat-form-field>
+
         <mat-form-field>
             <textarea matInput placeholder="Obs:" formControlName="obs"></textarea>
         </mat-form-field>

@@ -24,6 +24,7 @@ export class SidenavComponent implements OnInit {
   socialUser?: SocialUser | null;
   userName: string = '';
   photoUrl: string = '';
+  isManager = false;
   constructor(
     // private leadService: LeadService,
     private router: Router,
@@ -41,12 +42,13 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.socialUser = this.sessionService.getUser();
+    this.socialUser = this.sessionService.getGoogleUser();
     if (this.socialUser) {
       this.isLoggedin = this.socialUser ? true : false;
       this.userName = this.socialUser.firstName;
       this.photoUrl = this.socialUser.photoUrl;
     }
+    this.isManager = this.sessionService.getUserRole()===1?true:false
   }
 
   isScreenSmall(): boolean {

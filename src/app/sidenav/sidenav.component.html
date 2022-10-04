@@ -17,7 +17,7 @@
 
     </mat-toolbar>
     <mat-nav-list>
-      <a [routerLink]="['/main/integration']">
+      <a [routerLink]="['/main/integration']" *ngIf="isManager" >
           <mat-list-item>
           <mat-icon>link</mat-icon> <span class="user-name">
             <strong>INTEGRAÇÃO</strong>
@@ -25,7 +25,7 @@
         </mat-list-item>
         </a>
         
-      <a [routerLink]="['/main/employees']">
+      <a [routerLink]="['/main/employees']" *ngIf="isManager">
         <mat-list-item>
           <mat-icon>attribution</mat-icon> <span class="user-name">
             <strong>FUNCIONÁRIOS</strong>

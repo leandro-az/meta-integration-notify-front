@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     //   email: ['', Validators.required],
     //   password: ['', Validators.required],
     // });
-    this.socialUser = this.sessionService.getUser();
+    this.socialUser = this.sessionService.getGoogleUser();
     this.isLoggedin = this.socialUser ? true : false;
     if (this.isLoggedin) {
       this.router.navigate(['/main/leads'])
@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
           this.userService
             .getUserByEmail(this.socialUser.email)
             .then((result) => {
-              this.sessionService.putUser(user);
-              this.sessionService.setUserIdSession(result.userId);
+              this.sessionService.putGoogleUser(user);
+              this.sessionService.setUserSession(result);
               this.isLoggedin=true;
               this.router.navigate(['/main/leads']);
             })

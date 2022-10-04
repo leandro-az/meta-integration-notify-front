@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.socialUser = this.sessionService.getUser();
+    this.socialUser = this.sessionService.getGoogleUser();
     this.isLoggedin = this.socialUser ? true : false;
     console.log(this.socialUser);
     if (this.isLoggedin) {

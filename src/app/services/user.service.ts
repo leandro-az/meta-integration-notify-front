@@ -81,6 +81,26 @@ export class UserService {
     );
   }
 
+  async getEmployessByManagerAsync(managerUserIdStr: String): Promise<User[]> {
+    return new Promise((resolver, reject) => {
+      this.apollo
+        .watchQuery({
+          fetchPolicy: 'no-cache',
+          query: query_get_employees_by_manager,
+          variables: { managerUserIdStr },
+        })
+        .valueChanges.subscribe((result: any) => {
+          if (!result.data.employeesByManager) {
+            reject('Users not found');
+          }
+          resolver(result.data.employeesByManager);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
+    });
+  }
+
   getUserByEmail(emailStr: string): Promise<User> {
     return new Promise((resolver, reject) => {
       this.apollo

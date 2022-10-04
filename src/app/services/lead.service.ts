@@ -32,7 +32,7 @@ export class LeadService {
     return this._leadsSet.asObservable();
   }
 
-  updateLead(lead: Lead): Promise<Lead> {
+  updateLead(lead: Lead, userRelatedStr: string): Promise<Lead> {
     const updateLeadInput ={
         leadId: lead.leadId,
         email: lead.email,
@@ -48,7 +48,7 @@ export class LeadService {
         .mutate({
           fetchPolicy: 'no-cache',
           mutation:mutation_update_lead,
-          variables: {updateLeadInput},
+          variables: {updateLeadInput,userRelatedStr},
         })
         .subscribe((result: any) => {
           resolver(result.data.lead as Lead);

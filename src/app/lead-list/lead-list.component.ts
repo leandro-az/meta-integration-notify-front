@@ -57,6 +57,7 @@ export class LeadListComponent implements OnInit {
       valor_total_plano,
       status,
       createdAt,
+      userIdFk2
     }: Lead
   ) {
     const dialogConfig = new MatDialogConfig();
@@ -73,7 +74,8 @@ export class LeadListComponent implements OnInit {
       valor_total_plano,
       status,
       createdAt,
-      index
+      index,
+      userIdFk2
     };
     const dialogRef = this.dialog.open(EditLeadDialogComponent, dialogConfig);
     dialogRef
