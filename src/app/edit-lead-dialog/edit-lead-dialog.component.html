@@ -39,7 +39,7 @@
         </mat-form-field>
 
         <mat-form-field *ngIf="showUserOptinons">
-            <mat-select name="Encarregado" placeholder="Encarregado" [(value)]="encarregado">
+            <mat-select name="Atribuir Encarregado" placeholder="Atribuir Encarregado" [(value)]="encarregado">
                 <mat-option *ngFor="let option of usersOptions" [value]="option.userId">{{option.name}}</mat-option>
             </mat-select>
             <!-- <mat-label>Compétence</mat-label> -->

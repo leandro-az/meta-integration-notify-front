@@ -25,6 +25,7 @@ import { AddLeadDialogComponent } from './add-lead-dialog/add-lead-dialog.compon
 import { IntegrationComponent } from './integration/integration.component';
 import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'
 import {EditEmployeeDialogComponent} from './edit-employee-dialog/edit-employee-dialog.component';
+import { LeadsEmployeeDialogComponent } from './leads-employee-dialog/leads-employee-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {EditEmployeeDialogComponent} from './edit-employee-dialog/edit-employee-
     IntegrationComponent,
     AddEmployeeDialogComponent,
     EmployeeListComponent,
-    EditEmployeeDialogComponent
+    EditEmployeeDialogComponent,
+    LeadsEmployeeDialogComponent
   ],
   imports: [
     BrowserModule,

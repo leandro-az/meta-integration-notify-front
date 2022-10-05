@@ -14,6 +14,7 @@ import {} from '@angular/material/';
 import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
 import { EditEmployeeDialogComponent } from '../edit-employee-dialog/edit-employee-dialog.component';
 import { SessionService } from '../services/session.service';
+import { LeadsEmployeeDialogComponent } from '../leads-employee-dialog/leads-employee-dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -63,6 +64,23 @@ export class EmployeeListComponent implements OnInit {
     };
     const dialogRef = this.dialog.open(
       EditEmployeeDialogComponent,
+      dialogConfig
+    );
+    dialogRef.afterClosed().subscribe((val) => {
+      console.log('Dialog output:', val);
+      this.ngOnInit();
+    });
+  }
+
+  openLeadsByUser(userId:string){
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '600px';
+    dialogConfig.data = {  userRelated:userId };
+    const dialogRef = this.dialog.open(
+      LeadsEmployeeDialogComponent,
       dialogConfig
     );
     dialogRef.afterClosed().subscribe((val) => {

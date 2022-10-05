@@ -79,6 +79,24 @@ export class LeadService {
     );
   }
 
+  async getleadsByUserIdAsync(userIdStr: string): Promise<Lead[]> {
+
+    return new Promise((resolver, reject) => {
+      this.apollo
+        .query({
+          fetchPolicy: 'no-cache',
+          query:query_get_leads_by_userId,
+          variables: { userIdStr },
+        })
+        .subscribe((result: any) => {
+          resolver(result.data.leadsByUser);
+        }),
+        catchError((error: any) => {
+          throw new Error(error);
+        });
+    });
+  }
+
   leadById(leadIdStr: string): Promise<Lead> {
     return new Promise((resolver, reject) => {
       this.apollo

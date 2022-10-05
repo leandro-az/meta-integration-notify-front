@@ -1,3 +1,5 @@
+import { Lead } from "./lead";
+
 export class User{
   userId!: string;
 
@@ -14,4 +16,6 @@ export class User{
   updatedAt?: string 
 
   icon!: string
+
+  leads?: Lead[];
 }
