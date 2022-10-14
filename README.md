@@ -1,6 +1,6 @@
 # Meta Integration Notify - Front
 
-This project was generated to The Final Project of postgraduate on Distributed Software Architecture in PUC 
+This front-end project that was generated to The Final Project of postgraduate on Distributed Software Architecture in PUC 
 
 ## Technologies used.
 
