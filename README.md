@@ -1,4 +1,4 @@
-# MetaIntegrationNotifyFront
+# Meta Integration Notify - Front
 
 This project was generated to The Final Project of postgraduate on Distributed Software Architecture in PUC 
 
@@ -6,8 +6,11 @@ This project was generated to The Final Project of postgraduate on Distributed S
 
 
 [Typescript](https://www.typescriptlang.org/)
-[Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
+[Angular CLI](https://github.com/angular/angular-cli)
 [Apollo Graphql](https://www.apollographql.com/)
+[AWS - S3](https://aws.amazon.com/pt/s3/)
+[AWS - Cloudfront](https://aws.amazon.com/pt/cloudfront/)
+[Github Actions]()
 
 ## Development server
 
@@ -21,14 +24,28 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Login Scream:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<p align="center">
+  <img src="/src/assets/images/front.png" width="800" title="Login Scream">
+</p>
 
-## Further help
+## Try YourSelf: 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[URL TO FRONT](https://d2a6njrb77isi2.cloudfront.net)
 
-## 🤝 Developers:
+Steps:  
+
+    1- Não possuo acesso
+    2- Cadastrar informações para contato ( Esse cadastro é para os Gerentes/Donos )
+    3- Cadastrar conta Gmail pois através dela faremos o Singin
+
+No menu lateral temos:
+
+    1- Tela de integração onde contem a url de integração a ser utilizada no facebook
+    2- Tela de gerenciamento de Funcionários e seus Leads ( Para funcionários Admin)
+    3- Tela de leads atrelados ao user
+
+## 🤝 Developer:
 
 👤 **Leandro Almeida**
