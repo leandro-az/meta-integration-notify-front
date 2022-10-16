@@ -6,11 +6,17 @@ This front-end project that was generated to The Final Project of postgraduate o
 
 
 [Typescript](https://www.typescriptlang.org/)
+
 [Angular CLI](https://github.com/angular/angular-cli)
+
 [Apollo Graphql](https://www.apollographql.com/)
+
 [AWS - S3](https://aws.amazon.com/pt/s3/)
+
 [AWS - Cloudfront](https://aws.amazon.com/pt/cloudfront/)
+
 [Github Actions](https://github.com/features/actions)
+
 
 ## Development server
 
